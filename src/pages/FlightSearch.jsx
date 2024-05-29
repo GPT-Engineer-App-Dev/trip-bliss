@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Container, VStack, Heading, FormControl, FormLabel, Input, Button, HStack, Select } from "@chakra-ui/react";
 
 const FlightSearch = () => {
@@ -7,6 +8,7 @@ const FlightSearch = () => {
   const [departureDate, setDepartureDate] = useState("");
   const [returnDate, setReturnDate] = useState("");
   const [passengers, setPassengers] = useState(1);
+  const navigate = useNavigate();
 
   const handleSearch = () => {
     // Implement search logic here
@@ -16,6 +18,18 @@ const FlightSearch = () => {
       departureDate,
       returnDate,
       passengers,
+    });
+
+    // Navigate to booking confirmation page with dummy data
+    navigate('/booking-confirmation', {
+      state: {
+        confirmationNumber: "ABC123",
+        departureCity,
+        destinationCity,
+        departureDate,
+        returnDate,
+        passengers
+      }
     });
   };
 
